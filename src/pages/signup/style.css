@@ -8,12 +8,12 @@
 }
 
 .box {
-  width: 30%;
-  background-color: lightgray;
-  margin: auto;
-  vertical-align: middle;
-  margin-top: 10%;
-  height: 370px;
+    width: 30%;
+    background-color: lightgray;
+    margin: auto;
+    vertical-align: middle;
+    margin-top: 10%;
+    height: 370px;
 }
 
 .account {
