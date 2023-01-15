@@ -8,6 +8,9 @@ export const Signup = () => {
       <section>
         <div className="box card">
           <form className="box-input">
+            <label class="signup-heading"><h3><b>Sign Up</b></h3></label>
+            <br />
+            <br />
             <input class="form-control" placeholder="First name" required />
             <br />
             <input class="form-control" placeholder="Last name" required />
@@ -32,9 +35,8 @@ export const Signup = () => {
             <button type="submit" class="btn btn-primary login-button">
               Sign Up
             </button>
-            <label>Already a member?</label>
+            <label >Already a member?</label>
             <a href="/login">Sign in</a>
-            <br />
           </form>
         </div>
       </section>

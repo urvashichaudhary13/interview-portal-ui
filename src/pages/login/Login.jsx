@@ -1,14 +1,16 @@
 import React from "react";
 import { Header } from "../../components/Header";
-import "./style.css";
+import "./login.css";
 
 const Login = () => {
   return (
     <>
       <Header />
       <section>
-        <div className="box card">
+        <div className="login-box card">
           <form className="box-input">
+          <label class="login-title"><h3><b>Login</b></h3></label>
+          <br />
             <label>New User?</label>
             <a class="account" href="/signup">
               Create an account
