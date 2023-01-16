@@ -8,12 +8,12 @@
 }
 
 .box {
-  width: 30%;
-  background-color: lightgray;
-  margin: auto;
-  vertical-align: middle;
-  margin-top: 10%;
-  height: 370px;
+    width: 30%;
+    background-color: lightgray;
+    margin: auto;
+    vertical-align: middle;
+    margin-top: 10%;
+    height: 420px;
 }
 
 .account {
@@ -34,4 +34,9 @@
 .forgot {
     margin-left: 50%;
     text-decoration: none;
+}
+
+.signup-heading {
+    margin-left: 80px;
+    color: rgb(24,102,135);
 }

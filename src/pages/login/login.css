@@ -7,7 +7,7 @@
     color: whitesmoke;
 }
 
-.box {
+.login-box {
   width: 30%;
   background-color: lightgray;
   margin: auto;
@@ -34,4 +34,9 @@
 .forgot {
     margin-left: 50%;
     text-decoration: none;
+}
+
+.login-title {
+    margin-left: 85px;
+    color:rgb(24, 102, 135);
 }
