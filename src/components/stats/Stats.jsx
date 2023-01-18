@@ -1,3 +1,5 @@
+import "./style.css";
+
 export const Stats = (props) => {
     const { count, title } = props
         return (

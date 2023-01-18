@@ -11,7 +11,6 @@ export const HomePage = () => {
   const total = tableData.length;
 
   const tableRows = tableData.map((data) => {
-    console.log("data::::::::::;;", data)
     if(data.status === 'Selected'){
       selected= selected+1;
     } else if(data.status === 'Aligned'){

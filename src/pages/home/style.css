@@ -1,25 +1,13 @@
 .table-size{
-    /* padding:159px; */
     width: 1000px;
     margin: auto;
     margin-top: 200px;
-}
-
-.people-font {
-    font-size: 3rem;
-    color: rgb(124, 192, 222);
 }
 
 .divs div {
     float: left;
     clear: none; 
 }
-
-.gap-div {
-    margin-left: 150px;
-}
-
-
 
 .add-candidate {
     margin-left: 850px;
