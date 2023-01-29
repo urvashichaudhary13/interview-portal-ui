@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Signup, HomePage, Feedback  } from "./pages";
+import { Login, Signup, HomePage } from "./pages";
 
 export const App = () => {
   return(
@@ -10,7 +10,6 @@ export const App = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/home" element={<HomePage />} />
-          <Route exact path="/feedback" element={<Feedback />} />
       </Routes>
     </BrowserRouter>
   )
