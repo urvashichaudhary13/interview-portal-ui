@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./style.css"
 
 export const Header = () => {
     return (
@@ -9,3 +10,5 @@ export const Header = () => {
         </Navbar>
     )
 }
+
+export default Header;

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Signup  } from "./pages";
+import { Login, Signup, HomePage } from "./pages";
 
 export const App = () => {
   return(
@@ -9,6 +9,7 @@ export const App = () => {
         <Route path="/" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/home" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   )

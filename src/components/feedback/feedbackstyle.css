@@ -1,0 +1,34 @@
+/* .divs div {
+    float: left;
+    clear: none;
+} */
+
+.input-feedback {
+    height: 110px;
+}
+
+.aligned-elements {
+    margin-left: 50px;
+}
+
+.modal-htitle {
+    margin-left: 60px;
+    color: rgb(124, 192, 222);
+}
+
+.submit-button {
+    background-color: rgb(124, 192, 222);
+    ;
+}
+
+p {
+    margin-bottom: 0.2rem;
+}
+
+.input-gap {
+    margin-top: 10px;
+}
+
+.input-tags{
+    display: inline-block;
+}
