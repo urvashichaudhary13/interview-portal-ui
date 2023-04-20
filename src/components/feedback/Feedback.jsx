@@ -1,95 +1,104 @@
 import React, { useState } from "react";
-import "./feedbackstyle.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 const Feedback = (props) => {
-  const { data, setData } = props;
+  const { isOpen, setOpen, setRefetch } = props;
   const [state, setState] = useState({
-    name:"",
-    email:"",
-    department:"",
-    experience:0,
-    status:"",
-  })
+    name: "",
+    email: "",
+    department: "",
+    experience: 0,
+    status: "Aligned",
+  });
 
   const handleChange = (selected, action) => {
     if (action === "name") {
-      setState({ ...state, name:selected});
+      setState({ ...state, name: selected });
     } else if (action === "email") {
-      setState({...state, email:selected});
+      setState({ ...state, email: selected });
+    } else if (action === "experience") {
+      setState({ ...state, experience: selected });
+    } else if (action === "department") {
+      setState({ ...state, department: selected });
     } else {
-      setState({...state, department:selected});
+      setState({ ...state, status: selected });
     }
   };
 
-  const handleSubmit = (e) => {
-    data.push({
-      name: e.name,
-      email: e.email,
-      department: e.department,
-      experience: e.experience,
-      status: e.status,
+  const handleSubmit = async (e) => {
+    let dataApi = await fetch("http://localhost:3006/api/candidate", {
+      method: "POST",
+      body: JSON.stringify(e),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3006",
+      },
     });
-    const updatedData = [...data]
-    // updatedData.push(data)
-    setData(updatedData);
+    dataApi = await dataApi.json();
+    console.log("data:::::::::::;;", dataApi);
+    setRefetch(true);
   };
 
   return (
-    <>
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-fullscreen-xl-down">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title  modal-htitle">Candidate Registeration</h4>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-              ></button>
-            </div>
-
-            <div class="modal-body">
-              <form class="aligned-elements" action="handleSubmit()">
-                <label>Name</label>
-                <input
-                  onChange={(e) => handleChange(e.target.value, "name")}
-                  required
-                />
-                <br />
-                <label class="input-gap">Email</label>
-                <input
-                  onChange={(e) => handleChange(e.target.value, "email")}
-                  required
-                />
-                <br />
-                <label class="input-gap">Department</label>
-                <input
-                  onChange={(e) => handleChange(e.target.value, "department")}
-                />
-                <br />
-                <label class="input-gap">Position</label>
-                <input required />
-                <br />
-                <label class="input-gap">Experience</label>
-                <input required />
-                <br />
-              </form>
-            </div>
-
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn submit-button"
-                data-bs-dismiss="modal"
-                onClick={() => handleSubmit({ ...state })}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <Modal show={isOpen} onHide={() => setOpen(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Add new candidate</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter name"
+              onChange={(e) => handleChange(e.target.value, "name")}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3"> 
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => handleChange(e.target.value, "email")}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Experience</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Experience"
+              onChange={(e) => handleChange(e.target.value, "experience")}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Department</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter department"
+              onChange={(e) => handleChange(e.target.value, "department")}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setOpen(false)}>
+          Close
+        </Button>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit({ ...state });
+            setOpen(false);
+          }}
+        >
+          Submit
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
