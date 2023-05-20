@@ -9,10 +9,16 @@
     clear: none; 
 }
 
+.add-candidate-heading {
+    margin-left: 20%;
+    color: rgb(124, 192, 222);;
+}
+
 .add-candidate {
     margin-left: 850px;
     background-color: rgb(124, 192, 222);
     cursor: pointer;
+    border-style: none;
 }
 
 .add-candidate:hover{
@@ -33,3 +39,8 @@
     display: none;
     background-color: none;
   }
+
+.submit {
+    background-color: rgb(124, 192, 222);
+    border-style: none;
+}   

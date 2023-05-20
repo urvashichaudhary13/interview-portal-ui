@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Header, Stats, Feedback } from "../../components";
+import { Header, Stats, AddCandidate } from "../../components";
 import { Dropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "./style.css";
+import { FeedbackForm } from "../../components/feedbackform/FeedbackForm";
 
 export const HomePage = () => {
   const [isOpen, setOpen] = useState(false);
+  const [feedbackFormOpen, setFeedbackFormOpen] = useState(false);
   let selected = 0;
   let aligned = 0;
   let rejected = 0;
   const [data, setData] = useState([]);
   const [isRefetch, setRefetch] = useState(false);
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    department: "",
+    experience: 0,
+    status: "Aligned",
+    jobProfile: "",
+  });
   const total = data?.length;
 
   useEffect(() => {
@@ -32,18 +42,19 @@ export const HomePage = () => {
     setData(tableData);
   };
 
-  const handleDelete = async(id) => {
-    console.log("e--------",id)
-    let dataToDelete = await fetch(`http://localhost:3006/api/candidate/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3006",
-      },
-    });
-    dataToDelete = await dataToDelete.json()
-    console.log("dataToDelete:::::::::::::", dataToDelete)
-  }
+  const handleDelete = async (id) => {
+    console.log("e--------", id);
+    await fetch(
+      `http://localhost:3006/api/candidate/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3006",
+        },
+      }
+    );
+  };
 
   const tableRows = data?.map((data, index) => {
     if (data.status === "Selected") {
@@ -60,18 +71,38 @@ export const HomePage = () => {
         <td>{data.email}</td>
         <td>{data.experience} years</td>
         <td>{data.status}</td>
-        <td>{data.department}</td>
+        <td>{data.jobProfile}</td>
         <td>
-          <Dropdown trigger="hover">
-            <Dropdown.Toggle
-              variant="none"
-              className="dropdown-toggle"
-            >
-              &#8226; &#8226; &#8226;
+          <Dropdown>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+              <i class="bi bi-three-dots"></i>
             </Dropdown.Toggle>
+
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Feedback</Dropdown.Item>
-              <Dropdown.Item href="#action-2"><Button onClick={() => handleDelete(data._id)}>Delete</Button></Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  setFeedbackFormOpen(true);
+                }}
+              >
+                Feedback
+              </Dropdown.Item>
+              {feedbackFormOpen && (
+                <FeedbackForm
+                  data={data}
+                  setState={setState}
+                  isOpen={feedbackFormOpen}
+                  setOpen={setFeedbackFormOpen}
+                  setRefetch={setRefetch}
+                />
+              )}
+              <Dropdown.Item
+                onClick={() => {
+                  handleDelete(data._id);
+                  setRefetch(true);
+                }}
+              >
+                Delete
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </td>
@@ -110,6 +141,7 @@ export const HomePage = () => {
       <div class="table-size">
         <Button
           variant="secondary"
+          className="add-candidate"
           onClick={() => {
             setOpen(!isOpen);
           }}
@@ -117,11 +149,13 @@ export const HomePage = () => {
           Add candidate
         </Button>
         {isOpen && (
-          <Feedback
+          <AddCandidate
             data={data}
             isOpen={isOpen}
             setOpen={setOpen}
             setRefetch={setRefetch}
+            state={state}
+            setState={setState}
           />
         )}
         <br />
@@ -134,7 +168,7 @@ export const HomePage = () => {
               <th scope="col">Email</th>
               <th scope="col">Experience</th>
               <th scope="col">Status</th>
-              <th scope="col">Department</th>
+              <th scope="col">Job Profile</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
