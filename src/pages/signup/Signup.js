@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from '../../components'
 import './style.css'
 
@@ -7,9 +8,10 @@ export const Signup = () => {
   const [lastname, setlastname] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = async(e) => {
-    let result = await fetch("http://localhost:3006/api/users", {
+    let result = await fetch("http://localhost:3006/api/users/signup", {
       method:"POST",
       body: JSON.stringify(e),
       headers: {
@@ -18,6 +20,9 @@ export const Signup = () => {
       }
     } )
     result = await result.json();
+    if(!result.error) {
+      navigate("/login")
+    }
     return result;
   }
 

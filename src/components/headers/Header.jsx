@@ -6,7 +6,7 @@ import "./style.css"
 export const Header = () => {
     return (
         <Navbar className="navbar-color" variant="dark">
-            <Navbar.Brand className="navbar-brand"><strong>FeedBack Portal</strong></Navbar.Brand>
+            <Navbar.Brand className="navbar-brand"><strong>Feedback Portal</strong></Navbar.Brand>
         </Navbar>
     )
 }

@@ -1,3 +1,4 @@
+import { TextBox } from "./textbox";
 export { Header } from "./headers";
 export { Stats } from "./stats";
-export { Feedback } from "./feedback"
+export { AddCandidate } from "./addcandidate"
