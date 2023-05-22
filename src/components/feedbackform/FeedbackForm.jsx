@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { TextBox } from "../textbox";
 import "./style.css";
 
 const FeedbackForm = (props) => {
@@ -71,7 +70,7 @@ const FeedbackForm = (props) => {
               type="text"
               className="my-input"
               disabled
-              value={data.position}
+              value={data.jobProfile}
             />
           </Form.Group>
           <Form.Group className="mb-3 b-color">
@@ -102,12 +101,22 @@ const FeedbackForm = (props) => {
               <option value="Aligned">Aligned</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group className="mb-3 seventh">
+          <Form.Group className="mb-3">
             <Form.Label className="seven">
               <b>Feedback</b>
             </Form.Label>
-
-            <TextBox />
+            <Form.Control
+              as="textarea"
+              className="seven"
+              style={{
+                height: "100px",
+                width: "415px",
+                resize: "none",
+                overflow: "auto",
+              }}
+              type="text"
+              onChange={(e) => setFeedback(e.target.value)}
+            />
           </Form.Group>
         </Form>
         <Button
